@@ -48,20 +48,9 @@ MapCache.prototype.has = function (key) {
 
 function genereteKey(args) {
     var key = "";
-    for (var i = 0; i < args.length; ++i) {
-        if (typeof args[i] === "string") {
-            key += "\"" + args[i] + "\"" + ","
-        } else {
-            key += args[i] + ",";
-        }
-    }
+    
+    args.forEach(function(item, i, args) {
+        key += JSON.stringify(item);
+    });
     return key;
 }
-
-// function convertArgToArr(args) {
-//     var result = [];
-//     for (var i = 0; i < args.length; ++i) {
-//         result.push(args[i]);
-//     }
-//     return result;
-// }

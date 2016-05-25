@@ -73,9 +73,9 @@ describe("Memoized function", function () {
 	});
 
 	it("should use complicated enough key generator to preserve argument's order", function () {
-		memoizedAbs = chai.spy(memoizedAbs);
-		expect(memoizedAbs(4, 3)).to.equal(5);
-		expect(memoizedAbs(3, 4)).to.equal(5);
-		expect(memoizedAbs).to.have.been.called.twice();
+		var memoAbsSpy = chai.spy(memoizedAbs);
+		expect(memoAbsSpy(4, 3)).to.equal(5);
+		expect(memoAbsSpy(3, 4)).to.equal(5);
+		expect(memoAbsSpy).to.have.been.called.twice();
 	});
 });

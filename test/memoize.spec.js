@@ -52,7 +52,7 @@ describe("Memoized function", function () {
 	});
 
 	it("should cache results of the consequent calls with identical arguments", function () {
-		const ARGS0 = [3, 4];
+		const ARGS0 = [3, 5];
 		memoizedAbs(...ARGS0); // first call
 		expect(absSpy).to.have.been.called.with(...ARGS0);
 		absSpy.reset();
@@ -73,8 +73,9 @@ describe("Memoized function", function () {
 	});
 
 	it("should use complicated enough key generator to preserve argument's order", function () {
-		expect(memoizedAbs(4, 3)).to.equal(5);
-		expect(memoizedAbs(3, 4)).to.equal(5);
-		expect(memoizedAbs).to.have.been.called.twice();
+		var memoAbsSpy = chai.spy(memoizedAbs);
+		expect(memoAbsSpy(4, 3)).to.equal(5);
+		expect(memoAbsSpy(3, 4)).to.equal(5);
+		expect(memoAbsSpy).to.have.been.called.twice();
 	});
 });
